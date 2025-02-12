@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickHistory</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            width: 350px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        .header img {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+        }
+        h2 {
+            font-size: 18px;
+            color: #333;
+            margin: 0;
+        }
+        #search {
+            width: 100%;
+            padding: 12px 0;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.2s ease-in-out;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        #search:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+        #url-count {
+            font-size: 14px;
+            margin: 10px 0;
+            color: #666;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+            max-height: 250px;
+            overflow-y: auto;
+            border-top: 1px solid #ddd;
+        }
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            background: white;
+            transition: background 0.2s, transform 0.1s;
+            position: relative;
+        }
+        li:hover {
+            background: #f1f1f1;
+            transform: scale(1.02);
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <img src="icon.png" alt="QuickHistory Icon">
+    <h2>QuickHistory</h2>
+</div>
+<div id="url-count">Toplam URL sayısı: 0</div> 
+<input type="text" id="search" placeholder="Başlığa göre ara...">
+<ul id="results"></ul>
+<script src="popup.js"></script>
+</body>
+</html>

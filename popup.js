@@ -6,6 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
     function displayHistory(history) {
         resultsContainer.innerHTML = "";
 
+        if (!history || history.length === 0) {
+            urlCountElement.textContent = "Sonuç bulunamadı";
+            return;
+        }
+
         urlCountElement.textContent = `Toplam URL sayısı: ${history.length}`;
 
         history.forEach(item => {
@@ -27,6 +32,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function searchHistory(query) {
+        if (query.length < 2) {
+            resultsContainer.innerHTML = "";
+            urlCountElement.textContent = "En az 2 karakter giriniz";
+            return;
+        }
+
         chrome.storage.local.get({ savedHistory: [] }, (data) => {
             let savedHistory = data.savedHistory;
             savedHistory.sort((a, b) => b.score - a.score);
@@ -39,15 +50,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Sayfa ilk yüklendiğinde sonuçları gösterme
+    resultsContainer.innerHTML = "";
+    urlCountElement.textContent = "Arama yapmak için en az 2 karakter giriniz";
+
     searchInput.addEventListener("input", () => {
         const query = searchInput.value.trim();
         searchHistory(query);
-    });
-
-    chrome.storage.local.get({ savedHistory: [] }, (data) => {
-        let savedHistory = data.savedHistory;
-        savedHistory.sort((a, b) => b.score - a.score);
-
-        displayHistory(savedHistory);
     });
 });

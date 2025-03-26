@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Fast History Search",
+  "name": "Quick History",
   "version": "1.0",
   "description": "Tarayıcı geçmişini kullanarak hızlı arama yapmanı sağlar.",
   "permissions": [

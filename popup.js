@@ -11,22 +11,31 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        urlCountElement.textContent = `Toplam URL sayısı: ${history.length}`;
+        urlCountElement.textContent = `${history.length} kayıt arasından ${history.length} sonuç bulundu.`;
 
         history.forEach(item => {
             const listItem = document.createElement("li");
-            const link = document.createElement("a");
 
-            link.textContent = `(${item.score}) ${item.title}`;
-            link.style.fontWeight = "bold";
-            link.style.color = "#333"; 
-            link.style.fontSize = "16px";
-            link.style.display = "inline-block";
+            // Başlık linki
+            const titleLink = document.createElement("a");
+            titleLink.textContent = item.title;
+            titleLink.href = item.url;
+            titleLink.target = "_blank";
 
-            link.href = item.url;
-            link.target = "_blank";
+            // URL bilgisi
+            const urlSpan = document.createElement("span");
+            urlSpan.textContent = item.url;
+            urlSpan.style.display = "block";
+            urlSpan.style.wordBreak = "break-all";
 
-            listItem.appendChild(link);
+            // Skor bilgisi
+            const scoreSpan = document.createElement("span");
+            scoreSpan.textContent = `Skor: ${item.score}`;
+            scoreSpan.className = "score";
+
+            listItem.appendChild(titleLink);
+            listItem.appendChild(urlSpan);
+            listItem.appendChild(scoreSpan);
             resultsContainer.appendChild(listItem);
         });
     }

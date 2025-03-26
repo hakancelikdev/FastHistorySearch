@@ -1,91 +1,144 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuickHistory</title>
+    <title>Quick History</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            width: 350px;
-            padding: 15px;
-            background: #f9f9f9;
-            border-radius: 8px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
-        }
-        .header img {
-            width: 24px;
-            height: 24px;
-            margin-right: 8px;
-        }
-        h2 {
-            font-size: 18px;
-            color: #333;
+            width: 400px;
             margin: 0;
+            padding: 16px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f8f9fa;
         }
+
+        .container {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 16px;
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
         #search {
             width: 100%;
-            padding: 12px 0;
-            font-size: 14px;
-            border: 1px solid #ccc;
+            padding: 12px 16px;
+            padding-left: 40px;
+            border: 2px solid #e9ecef;
             border-radius: 8px;
-            outline: none;
-            transition: all 0.2s ease-in-out;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-        #search:focus {
-            border-color: #007bff;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-        }
-        #url-count {
             font-size: 14px;
-            margin: 10px 0;
-            color: #666;
+            outline: none;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
         }
-        ul {
+
+        #search:focus {
+            border-color: #228be6;
+            box-shadow: 0 0 0 3px rgba(34, 139, 230, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #adb5bd;
+            font-size: 16px;
+        }
+
+        #url-count {
+            color: #868e96;
+            font-size: 12px;
+            margin-bottom: 12px;
+            padding: 0 4px;
+        }
+
+        #results {
             list-style: none;
             padding: 0;
-            margin-top: 10px;
-            max-height: 250px;
+            margin: 0;
+            max-height: 400px;
             overflow-y: auto;
-            border-top: 1px solid #ddd;
         }
-        li {
-            padding: 10px;
-            border-bottom: 1px solid #eee;
-            background: white;
-            transition: background 0.2s, transform 0.1s;
-            position: relative;
+
+        #results::-webkit-scrollbar {
+            width: 8px;
         }
-        li:hover {
-            background: #f1f1f1;
-            transform: scale(1.02);
+
+        #results::-webkit-scrollbar-track {
+            background: #f1f3f5;
+            border-radius: 4px;
         }
-        a {
+
+        #results::-webkit-scrollbar-thumb {
+            background: #dee2e6;
+            border-radius: 4px;
+        }
+
+        #results::-webkit-scrollbar-thumb:hover {
+            background: #adb5bd;
+        }
+
+        #results li {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            transition: all 0.2s ease;
+            border: 1px solid #e9ecef;
+        }
+
+        #results li:hover {
+            background-color: #f8f9fa;
+            border-color: #dee2e6;
+            transform: translateY(-1px);
+        }
+
+        #results a {
+            color: #228be6;
             text-decoration: none;
-            color: #007bff;
-            font-weight: bold;
+            font-weight: 500;
+            font-size: 14px;
             display: block;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            margin-bottom: 4px;
+        }
+
+        #results a:hover {
+            color: #1c7ed6;
+            text-decoration: underline;
+        }
+
+        #results span {
+            display: block;
+            font-size: 12px;
+            color: #868e96;
+            margin-top: 4px;
+        }
+
+        .score {
+            display: inline-block;
+            background-color: #e7f5ff;
+            color: #228be6;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            margin-top: 4px;
         }
     </style>
 </head>
 <body>
-<div class="header">
-    <img src="icon.png" alt="QuickHistory Icon">
-    <h2>QuickHistory</h2>
-</div>
-<div id="url-count">Toplam URL sayısı: 0</div> 
-<input type="text" id="search" placeholder="Başlığa göre ara...">
-<ul id="results"></ul>
-<script src="popup.js"></script>
+    <div class="container">
+        <div class="search-container">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="search" placeholder="Geçmişte ara...">
+        </div>
+        <div id="url-count"></div>
+        <ul id="results"></ul>
+    </div>
+    <script src="popup.js"></script>
 </body>
 </html>
